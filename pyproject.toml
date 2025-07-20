@@ -1,0 +1,8 @@
+[project]
+name = "bach-ai"
+version = "0.1.0"
+dependencies = [
+    "music21",
+    "torch",
+]
+
