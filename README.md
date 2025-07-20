@@ -123,7 +123,7 @@ Inside `examples/` you'll find chronological generations:
 
 ## 🧠 Credits
 
-Built by [Timothy Williams](https://chat.openai.com/) using open-source data from [music21](https://web.mit.edu/music21/).
+Built by Timothy Williams using open-source data from [music21](https://web.mit.edu/music21/).
 
 Inspired by J.S. Bach's chorale harmonizations.
 
