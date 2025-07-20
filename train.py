@@ -24,10 +24,10 @@ def main():
     model = ChoraleLSTM(vocab_size=len(tok2idx)).to(DEVICE)
 
     # Load existing model weights if available
-    if os.path.exists("chorale_lstm.pt"):
+    if os.path.exists("chorale_lstm_with_keys.pt"):
         print("Loading existing model weights...")
         model.load_state_dict(torch.load(
-            "chorale_lstm.pt", map_location=DEVICE))
+            "chorale_lstm_with_keys.pt", map_location=DEVICE))
 
     # Initialize optimizer (not restored for simplicity)
     opt = torch.optim.Adam(model.parameters(), lr=LR)
@@ -47,7 +47,7 @@ def main():
         print(f"Epoch {epoch+1}: loss={total_loss / len(loader):.4f}")
 
     # Save updated model weights
-    torch.save(model.state_dict(), "chorale_lstm.pt")
+    torch.save(model.state_dict(), "chorale_lstm_with_keys.pt")
     print("Model saved to chorale_lstm.pt")
 
 

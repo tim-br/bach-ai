@@ -11,8 +11,13 @@ def load_chorales_soprano(quarterLength=0.25):
         parts = chorale.parts.stream()
         if len(parts) < 1:
             continue
-        soprano = parts[0].flat.notesAndRests
-        seq = []
+        soprano = parts[0].flatten().notesAndRests
+
+        # Extract key using music21
+        key = chorale.analyze('key')
+        key_token = f"KEY_{key.tonic.name.replace('-', 'b')}_{'MINOR' if key.mode == 'minor' else 'MAJOR'}"
+
+        seq = [key_token]
         for e in soprano:
             if isinstance(e, note.Note):
                 pitch = e.pitch.midi
@@ -25,7 +30,7 @@ def load_chorales_soprano(quarterLength=0.25):
 
 
 def build_vocab(sequences):
-    vocab = sorted({p for seq in sequences for p in seq})
+    vocab = sorted({p for seq in sequences for p in seq}, key=str)
     tok2idx = {tok: i for i, tok in enumerate(vocab)}
     idx2tok = {i: tok for tok, i in tok2idx.items()}
     return tok2idx, idx2tok
